@@ -20,19 +20,14 @@ public class TestingMain {
 ///////////////////////////////////////////////////////////////////////
 
         Calculator calculator = new Calculator();
-        int num1 = 3;
-        int num2 = 7;
 
-        int result1 = num1 + num2;
-        int result2 = num1 - num2;
-
-        if (result1 == calculator.add(3, 7)) {
+        if (10 == calculator.add(3, 7)) {
             System.out.println("test passed");
         } else {
             System.out.println("ERROR");
         }
 
-        if (result2 == calculator.subtract(3, 7)) {
+        if (-4 == calculator.subtract(3, 7)) {
             System.out.println("test passed");
         } else {
             System.out.println("ERROR");
