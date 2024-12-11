@@ -9,8 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("ShapeCollector Test Suite")
 class ShapeCollectorTestSuite {
 
+
     @Nested
     @DisplayName("tests for adding and removing shapes")
+
     class AddRemoveShapes {
 
         @Test

@@ -4,7 +4,6 @@ import com.kodilla.testing.forum.ForumUser;
 import com.kodilla.testing.forum.ForumPost;
 import com.kodilla.testing.forum.ForumComment;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 
 @DisplayName("TDD: Forum Test Suite")
 class ForumTestSuite {
