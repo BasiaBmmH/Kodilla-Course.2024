@@ -24,9 +24,9 @@ public class PointsCalculator {
         pointAll.add(200);
         myPints.add(0);
 
-//        //dijkstra
-//        pointAll.add(200);
-//        myPints.add();
+        //dijkstra
+        pointAll.add(200);
+        myPints.add(200);
 //
 //        //teoria
 //        pointAll.add(1000);
