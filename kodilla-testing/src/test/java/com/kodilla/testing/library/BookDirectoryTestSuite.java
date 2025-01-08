@@ -28,7 +28,8 @@ class BookDirectoryTestSuite {
     @Mock
     private LibraryDatabase libraryDatabaseMock;
 
-    @Test                                                                               // [1]
+    @Test
+        // [1]
     void testListBooksWithConditionsReturnList() {                                      // [2]
 
         // Given
@@ -89,5 +90,58 @@ class BookDirectoryTestSuite {
         // Then
         assertEquals(0, theListOfBooks10.size());                                     // [5]
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());    // [6]
+    }
+
+    @Test
+    void testListBooksInHandsOfWhenNoBooks() {
+        // Given
+        LibraryUser user = new LibraryUser("Bartosz", "Bartoszewski", "123456789");
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> noBooks = new ArrayList<>();
+        when(libraryDatabaseMock.listBooksInHandsOf(user)).thenReturn(noBooks);
+
+        // When
+        List<Book> booksInHands = bookLibrary.listBooksInHandsOf(user);
+
+        // Then
+        assertEquals(0, booksInHands.size());
+    }
+
+    @Test
+    void testListBooksInHandsOfWhenOneBook() {
+        // Given
+        LibraryUser user = new LibraryUser("Anita", "Anitska", "987654321");
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> oneBook = List.of(new Book("rozdroze", "Andrzej", 2024));
+        when(libraryDatabaseMock.listBooksInHandsOf(user)).thenReturn(oneBook);
+
+        // When
+        List<Book> booksInHands = bookLibrary.listBooksInHandsOf(user);
+
+        // Then
+        assertEquals(1, booksInHands.size());
+        assertEquals("rozdroze", booksInHands.get(0).getTitle());
+    }
+
+    @Test
+    void testListBooksInHandsOfWhenFiveBooks() {
+        // Given
+        LibraryUser user = new LibraryUser("Bozena", "Bogna", "123987654");
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> fiveBooks = List.of(
+                new Book("rozdroze", "Andrzej", 2024),
+                new Book("java", "UdreczonyStudent", 2001),
+                new Book("szlakiem chmur", "Aki", 2002),
+                new Book("tomb rider", "Rise", 2016),
+                new Book("assassin", "Ubisoft", 2013)
+        );
+        when(libraryDatabaseMock.listBooksInHandsOf(user)).thenReturn(fiveBooks);
+
+        // When
+        List<Book> booksInHands = bookLibrary.listBooksInHandsOf(user);
+
+        // Then
+        assertEquals(5, booksInHands.size());
+        assertEquals("assassin", booksInHands.get(4).getTitle());
     }
 }
