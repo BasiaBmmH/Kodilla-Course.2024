@@ -107,6 +107,20 @@ public class StreamMain {
 //
 //        System.out.println(theResultStringOfBooks);
 
+        Forum forum = new Forum();
+        ForumUser firstUser = forum.getUserList().get(0);
+
+        List<ForumUser> filteredUsers = forum.getUserList().stream()
+                .filter(forumUser -> 'M' == forumUser.getSex())
+                //.filter(forumUser -> LocalDate.now().getYear() - 20 >= forumUser.getBirthDay().getYear());
+                .filter(forumUser -> LocalDate.now().minusYears(20).isAfter(forumUser.getBirthDay()))
+                .filter(forumUser -> forumUser.getPostsCount() > 0)
+                .map(user -> new ForumUser(user.getId(), user.getName(), user.getSex(), user.getBirthDay(), user.getPostsCount()))
+                .toList();
+
+        filteredUsers.forEach(user -> System.out.println(
+                "ID: " + user.getId() + " Name: " + user.getName() + " BirthDay: " + user.getBirthDay() +
+                        " Posts: " + user.getPostsCount()));
 
 
     }
