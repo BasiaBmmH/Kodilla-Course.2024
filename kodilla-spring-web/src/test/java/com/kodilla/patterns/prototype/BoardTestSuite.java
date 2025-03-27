@@ -29,7 +29,7 @@ class BoardTestSuite {
                 .forEach(n -> listDone.getTasks().add(new Task("Done Task number " + n)));
 
         //creating the board and assigning the lists
-        Board board = new Board("Project number 1");
+        Board board = new Board("Project number 1" );
         board.getLists().add(listToDo);
         board.getLists().add(listInProgress);
         board.getLists().add(listDone);
