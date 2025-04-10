@@ -1,0 +1,40 @@
+CREATE TABLE ISSUESLISTS (
+                             ID SERIAL PRIMARY KEY,
+                             NAME VARCHAR(1024)
+);
+
+
+CREATE TABLE ISSUES (
+                        ID SERIAL PRIMARY KEY,
+                        ISSUESLIST_ID INT,
+                        SUMMARY VARCHAR(1024),
+                        DESCRIPTION TEXT,
+                        USER_ID_ASSIGNEDTO INT,
+                        FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLISTS(ID)
+);
+
+
+INSERT INTO ISSUESLISTS (NAME) VALUES ('ToDo');
+INSERT INTO ISSUESLISTS (NAME) VALUES ('In progress');
+INSERT INTO ISSUESLISTS (NAME) VALUES ('Done');
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (1, 'Zadanie 1 - ToDo', 'kupno mang dla znajomych', 1);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (1, 'Zadanie 2 - ToDo', 'odrobienie pracy domowej', 2);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (1, 'Zadanie 3 - ToDo', 'pogranie na konsoli', 3);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (1, 'Zadanie 4 - ToDo', 'zaprogramowanie gry w cpp na uni', 4);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (1, 'Zadanie 5 - ToDo', 'udawanie, ze sie zos robi a tak naprawde odpoczywac :>', 5);
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (2, 'Zadanie 1 - In progress', 'kupno mang dla znajomych', 1);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (2, 'Zadanie 2 - In progress', 'odrobienie pracy domowej', 2);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (2, 'Zadanie 3 - In progress', 'pogranie na konsoli', 3);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (2, 'Zadanie 4 - In progress', 'zaprogramowanie gry w cpp na uni', 4);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (2, 'Zadanie 5 - In progress', 'udawanie, ze sie zos robi a tak naprawde odpoczywac :>', 5);
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (3, 'Zadanie 1 - Done', 'kupno mang dla znajomych', 1);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (3, 'Zadanie 2 - Done', 'odrobienie pracy domowej', 2);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (3, 'Zadanie 3 - Done', 'pogranie na konsoli', 3);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (3, 'Zadanie 4 - Done', 'zaprogramowanie gry w cpp na uni', 4);
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES (3, 'Zadanie 5 - Done', 'udawanie, ze sie zos robi a tak naprawde odpoczywac :>', 5);
+
+SELECT * FROM ISSUESLISTS;
+SELECT * FROM ISSUES;
