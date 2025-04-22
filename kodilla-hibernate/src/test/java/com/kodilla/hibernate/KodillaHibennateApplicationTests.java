@@ -1,13 +1,13 @@
-package com.kodilla.kodillahibernate;
+package com.kodilla.hibernate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KodillaHibernateApplicationTests {
+class KodillaHibennateApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
