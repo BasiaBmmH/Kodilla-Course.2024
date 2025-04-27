@@ -1,24 +1,18 @@
-package com.kodilla.hibernate.tasklist;
-
+package com.kodilla.hibernate.task;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "TASKLISTS")
+@Table(name="TASKLISTS")
 public class TaskList {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(name = "LISTNAME")
+    private int id;
     private String listName;
-
-    @Column(name = "DESCRIPTION")
     private String description;
+    private List<Task> tasks = new ArrayList<>();
 
     public TaskList() {
     }
@@ -28,36 +22,48 @@ public class TaskList {
         this.description = description;
     }
 
-    public Long getId() {
+    @Id
+    @NotNull
+    @GeneratedValue
+    @Column(name="ID", unique=true)
+    public int getId() {
         return id;
     }
 
+    @NotNull
+    @Column(name="LISTNAME")
     public String getListName() {
         return listName;
     }
 
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
 
-    public void setListName(String listName) {
+    @OneToMany(
+            targetEntity = Task.class,
+            mappedBy = "taskList",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    private void setId(int id) {
+        this.id = id;
+    }
+
+    private void setListName(String listName) {
         this.listName = listName;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TaskList taskList)) return false;
-        return Objects.equals(listName, taskList.listName) &&
-                Objects.equals(description, taskList.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(listName, description);
+    private void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
