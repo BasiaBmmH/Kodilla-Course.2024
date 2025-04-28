@@ -20,21 +20,19 @@ repositories {
 dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    // Spring Boot Starters
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // MySQL Connector (specific version recommended)
     runtimeOnly 'com.mysql:mysql-connector-j:8.3.0'
+    runtimeOnly 'com.h2database:h2' // <<< DODAJ TO!
 
-    // Optional: Logging enhancements (Logstash for structured logs)
     implementation 'net.logstash.logback:logstash-logback-encoder:7.4'
 
-    // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()
