@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface TaskListDao extends CrudRepository<TaskList, Long> {
+public interface TaskListDao extends CrudRepository<TaskList, Integer> {
     List<TaskList> findByListName(String listName);
 }
+
