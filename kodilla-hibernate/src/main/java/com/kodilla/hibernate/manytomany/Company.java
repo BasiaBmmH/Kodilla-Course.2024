@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "COMPANIES")
+@NamedNativeQuery(
+        name = "Company.findByNamePrefix",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :prefix%",
+        resultClass = Company.class
+)
 public class Company {
 
     private int id;
@@ -35,17 +40,17 @@ public class Company {
         return name;
     }
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
     private void setId(int id) {
         this.id = id;
     }
 
     private void setName(String name) {
         this.name = name;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
-    public List<Employee> getEmployees() {
-        return employees;
     }
 
     private void setEmployees(List<Employee> employees) {
